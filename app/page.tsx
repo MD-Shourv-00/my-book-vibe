@@ -5,12 +5,17 @@ import BookDataType from "./type/type";
 
 // reuseable bookslist data fetching function.
 export async function BookListPromise() {
-  const res = await fetch(
-    "http://localhost:5000/BooksData",
+  try{
+    const res = await fetch(
+    `${process.env.NEXT_PUBLIC_JSON_SERVER_DATA}/BooksData`,
     { next: { revalidate: 60 } },
   );
 
   return res.json();
+  } catch(error){
+    console.log(error);
+    return []
+  }
 }
 
 export default async function Homepage() {

@@ -1,5 +1,18 @@
 import DetailsOfBook from "../components/DetailsOfBook";
 
+async function fetchDataFunc(getBookId: string) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_JSON_SERVER_DATA}/BooksData/${getBookId}`,
+    );
+
+    return res.json();
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+}
+
 const BookInformation = async ({
   params,
 }: {
@@ -7,11 +20,7 @@ const BookInformation = async ({
 }) => {
   const { bookId } = await params;
 
-  const res = await fetch(
-    `http://localhost:5000/BooksData/${bookId}`,
-  );
-
-  const data = await res.json();
+  const data = await fetchDataFunc(bookId);
 
   return (
     <div>

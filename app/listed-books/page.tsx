@@ -7,15 +7,16 @@ import WishListCard from "../components/wishList/WishListCard";
 import BookDataType from "../type/type";
 
 const ListedBook = () => {
-    const context = useContext(BooksContext);
+  const context = useContext(BooksContext);
 
-    if (!context) {
-      return null;
-    }
+  if (!context) {
+    return null;
+  }
 
-    const { booksList, wishList } = context;
+  const { booksList, wishList } = context;
 
-  const [sortedValue, setSortedValue] = useState("");
+  const [sortedValue, setSortedValue] =
+    useState<string>("");
 
   function sortTheList(list: BookDataType[]) {
     if (sortedValue === "rating") {
